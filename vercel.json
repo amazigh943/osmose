@@ -1,0 +1,8 @@
+{
+  "crons": [
+    { "path": "/api/cron/relances",                    "schedule": "0 9 * * 1" },
+    { "path": "/api/cron/resume-hebdo",                "schedule": "0 7 * * 1" },
+    { "path": "/api/cron/alerte-stock",                "schedule": "0 8 * * 1" },
+    { "path": "/api/cron/relance-anciens-clients",     "schedule": "0 9 1 3 *" }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:/WINDOWS/system32/osmose && npx create-next-app@14 . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes 2>&1)",
+      "Read(//c/WINDOWS/system32/**)",
+      "Bash(npx create-next-app@14 osmose-tmp --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(cp -r C:/WINDOWS/system32/osmose-tmp/. C:/WINDOWS/system32/osmose/ && rm -rf C:/WINDOWS/system32/osmose-tmp && echo \"Done\")",
+      "Bash(cp -r C:/WINDOWS/system32/osmose-tmp/app C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/package.json C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/package-lock.json C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/next.config.mjs C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/tailwind.config.ts C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/tsconfig.json C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/postcss.config.mjs C:/WINDOWS/system32/osmose/ && cp C:/WINDOWS/system32/osmose-tmp/next-env.d.ts C:/WINDOWS/system32/osmose/ && echo \"Done\")",
+      "Bash(cd C:/WINDOWS/system32/osmose && npm install @supabase/supabase-js @supabase/auth-helpers-nextjs @anthropic-ai/sdk resend react-hook-form zod @hookform/resolvers 2>&1)",
+      "Bash(sleep 3 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(start http://localhost:3000)",
+      "Bash(cd C:/WINDOWS/system32/osmose && curl -s -X POST http://localhost:3000/api/demande \\\\\n  -H \"Content-Type: application/json\" \\\\\n  -d '{\"prenom\":\"Test\",\"nom\":\"User\",\"email\":\"test@test.com\",\"telephone\":\"0600000000\",\"adresse_chantier\":\"12 rue de la Paix Paris\",\"type_travaux\":\"peinture_interieure\",\"surface\":\"30_80\",\"description\":\"test\"}' \\\\\n  2>&1)",
+      "Bash(sleep 6 && curl -s -X POST http://localhost:3000/api/demande \\\\\n  -H \"Content-Type: application/json\" \\\\\n  -d '{\"prenom\":\"Test\",\"nom\":\"User\",\"email\":\"test@test.com\",\"telephone\":\"0600000000\",\"adresse_chantier\":\"12 rue de la Paix Paris\",\"type_travaux\":\"peinture_interieure\",\"surface\":\"30_80\",\"description\":\"test\"}' 2>&1 | python -c \"import sys,json; d=sys.stdin.read\\(\\); print\\(d[:500] if not d.startswith\\('{'\\) else json.dumps\\(json.loads\\(d\\), indent=2, ensure_ascii=False\\)\\)\" 2>/dev/null || echo \"Réponse brute reçue\")",
+      "Bash(sleep 8 && curl -s -X POST http://localhost:3000/api/demande \\\\\n  -H \"Content-Type: application/json\" \\\\\n  -d '{\"prenom\":\"Test\",\"nom\":\"User\",\"email\":\"test@test.com\",\"telephone\":\"0600000000\",\"adresse_chantier\":\"12 rue de la Paix Paris\",\"type_travaux\":\"peinture_interieure\",\"surface\":\"30_80\"}' 2>&1 | head -c 400)",
+      "Bash(sleep 5 && curl -s -X POST http://localhost:3000/api/demande \\\\\n  -H \"Content-Type: application/json\" \\\\\n  -d '{\"prenom\":\"Test\",\"nom\":\"User\",\"email\":\"test@test.com\",\"telephone\":\"0600000000\",\"adresse_chantier\":\"12 rue de la Paix Paris\",\"type_travaux\":\"peinture_interieure\",\"surface\":\"30_80\"}' 2>&1 | head -c 300)",
+      "Bash(sleep 6 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(sleep 4 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(cd C:/WINDOWS/system32/osmose && npx next dev --port 3000 2>&1 | head -5)",
+      "Bash(sleep 8 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002/demande && sleep 3)",
+      "Bash(npm run:*)",
+      "Bash(find C:WINDOWSsystem32osmose -name *confirmation* -o -name *confirm*)",
+      "Bash(curl:*)",
+      "Bash(python -m json.tool)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node -e \"console.log\\(require\\(''./node_modules/@supabase/supabase-js/package.json''\\).version\\)\")",
+      "Bash(node -e \":*)",
+      "Bash(grep -v \"^$\")",
+      "Bash(grep:*)",
+      "Bash(netstat -ano*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd /c \"taskkill /PID 17580 /F\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(cmd /c \"for /f \"\"tokens=5\"\" %a in \\(''netstat -ano ^| findstr \"\":3000 \"\" ^| findstr LISTENING''\\) do taskkill /PID %a /F\")",
+      "Bash(cmd /c \"for /f \"\"tokens=5\"\" %a in \\(''netstat -ano ^| findstr \"\":3001 \"\" ^| findstr LISTENING''\\) do taskkill /PID %a /F\")",
+      "Bash(cmd /c \"for /f \"\"tokens=5\"\" %a in \\(''netstat -ano ^| findstr \"\":3002 \"\" ^| findstr LISTENING''\\) do taskkill /PID %a /F\")",
+      "Bash(cmd /c \"wmic process where \\\\\"name='node.exe'\\\\\" get ProcessId,CommandLine 2>nul\")",
+      "Bash(powershell -Command \"Get-Process node | Select-Object Id,CPU | Format-Table\")",
+      "Bash(powershell -Command \"Stop-Process -Name node -Force\")"
+    ]
+  }
+}

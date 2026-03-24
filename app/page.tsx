@@ -1,101 +1,228 @@
-import Image from "next/image";
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { DM_Sans, Cormorant_Garamond } from 'next/font/google'
+
+const dmSans = DM_Sans({ subsets: ['latin'], weight: ['300', '400'] })
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['300'] })
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showChat, setShowChat] = useState(false)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <main
+      className={dmSans.className}
+      style={{ background: '#0F0F0D', minHeight: '100vh' }}
+    >
+      {/* Hero plein écran */}
+      <div
+        style={{
+          position: 'relative',
+          height: '100vh',
+          width: '100%',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {/* Image de fond */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1600)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+
+        {/* Overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.65))',
+          }}
+        />
+
+        {/* Contenu centré */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 10,
+            textAlign: 'center',
+            padding: '0 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          {/* Label */}
+          <span style={{
+            fontFamily: dmSans.style.fontFamily,
+            fontSize: '11px',
+            letterSpacing: '0.16em',
+            color: 'rgba(255,255,255,0.55)',
+            textTransform: 'uppercase',
+            display: 'block',
+          }}>
+            Artisan peintre • Île-de-France
+          </span>
+
+          {/* Titre */}
+          <h1
+            className={cormorant.className}
+            style={{
+              fontSize: 'clamp(64px, 10vw, 96px)',
+              fontWeight: 300,
+              color: '#FFFFFF',
+              letterSpacing: '-0.01em',
+              lineHeight: 1,
+              marginTop: '16px',
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Osmose
+          </h1>
+
+          {/* Sous-titre */}
+          <p style={{
+            fontFamily: dmSans.style.fontFamily,
+            fontSize: '18px',
+            fontWeight: 300,
+            color: 'rgba(255,255,255,0.75)',
+            marginTop: '20px',
+            lineHeight: 1.5,
+          }}>
+            Votre devis peinture, sans attendre.
+          </p>
+
+          {/* Trait */}
+          <div style={{
+            width: '40px',
+            height: '1px',
+            background: 'rgba(255,255,255,0.3)',
+            margin: '28px auto',
+          }} />
+
+          {/* Boutons */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full" style={{ maxWidth: '280px' }}>
+            <Link
+              href="/demande"
+              style={{
+                display: 'block',
+                flex: 1,
+                background: '#FFFFFF',
+                color: '#0F0F0D',
+                padding: '15px 36px',
+                borderRadius: '2px',
+                fontSize: '13px',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                textAlign: 'center',
+                textDecoration: 'none',
+                transition: 'opacity 0.2s ease',
+                whiteSpace: 'nowrap',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+            >
+              Prendre rendez-vous
+            </Link>
+
+            <button
+              onClick={() => setShowChat(true)}
+              style={{
+                flex: 1,
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.4)',
+                color: '#FFFFFF',
+                padding: '15px 36px',
+                borderRadius: '2px',
+                fontSize: '13px',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'border-color 0.2s ease, opacity 0.2s ease',
+                whiteSpace: 'nowrap',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.7)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)')}
+            >
+              Une question ?
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Texte bas de page */}
+        <div style={{
+          position: 'absolute',
+          bottom: '32px',
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+        }}>
+          <span style={{
+            fontSize: '11px',
+            color: 'rgba(255,255,255,0.4)',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}>
+            Devis gratuit • Déplacement offert • Île-de-France
+          </span>
+        </div>
+      </div>
+
+      {/* Modale chat */}
+      {showChat && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.6)',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            padding: '16px',
+            zIndex: 50,
+          }}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          <div style={{
+            background: '#1A1A17',
+            border: '1px solid rgba(255,255,255,0.08)',
+            width: '100%',
+            maxWidth: '440px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            marginBottom: '8px',
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '18px 20px',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+            }}>
+              <span style={{ fontSize: '13px', fontWeight: 400, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                Assistant Osmose
+              </span>
+              <button
+                onClick={() => setShowChat(false)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.4)', fontSize: '18px', lineHeight: 1 }}
+              >
+                ✕
+              </button>
+            </div>
+            <div style={{ padding: '40px 20px', minHeight: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', textAlign: 'center' }}>
+                Le chat IA arrive bientôt.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  )
 }
