@@ -29,7 +29,7 @@ export default function DevisPreview({ data }: { data: DevisData }) {
           <div style={{ fontSize: '8pt', color: '#A0A090', marginTop: '5px', lineHeight: '1.7' }}>
             <div>N° {data.numero}</div>
             <div>Date : {data.date}</div>
-            <div>Valable jusqu'au : {data.validite}</div>
+            <div>Valable jusqu&apos;au : {data.validite}</div>
           </div>
         </div>
       </div>
@@ -96,8 +96,8 @@ export default function DevisPreview({ data }: { data: DevisData }) {
         <div style={{ marginTop: '28px', paddingTop: '16px', borderTop: '1px solid #E5E3DF' }}>
           <div style={{ fontSize: '7.5pt', color: '#6A6A60', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '6px', fontWeight: 700 }}>Conditions</div>
           <div style={{ fontSize: '8.5pt', color: '#6A6A60', lineHeight: '1.7' }}>
-            Devis valable 30 jours à compter de sa date d'émission. Acompte de 30 % à la commande.<br />
-            TVA non récupérable sur les travaux d'amélioration de l'habitat (taux réduit applicable).<br />
+            Devis valable 30 jours à compter de sa date d&apos;émission. Acompte de 30 % à la commande.<br />
+            TVA non récupérable sur les travaux d&apos;amélioration de l&apos;habitat (taux réduit applicable).<br />
             Ce devis vaut contrat dès acceptation et signature par le client.
           </div>
         </div>

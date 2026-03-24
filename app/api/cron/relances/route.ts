@@ -134,7 +134,6 @@ export async function GET(req: NextRequest) {
   console.log('[cron/relances] ── démarrage ──')
 
   const adminEmail = process.env.ADMIN_EMAIL
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
 
   // Récupère tous les devis envoyés depuis plus de 7 jours

@@ -134,7 +134,7 @@ export default function FacturesPage() {
         {loading ? (
           <div style={{ padding: '40px 0', fontSize: '13px', color: 'rgba(255,255,255,0.25)', textAlign: 'center' }}>Chargement...</div>
         ) : factures.length === 0 ? (
-          <div style={{ padding: '40px 0', fontSize: '13px', color: 'rgba(255,255,255,0.25)', textAlign: 'center' }}>Aucune facture pour l'instant.</div>
+          <div style={{ padding: '40px 0', fontSize: '13px', color: 'rgba(255,255,255,0.25)', textAlign: 'center' }}>Aucune facture pour l&apos;instant.</div>
         ) : (
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>

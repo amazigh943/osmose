@@ -164,7 +164,7 @@ export default function AcomptePage() {
           ) : (
             <>
               <p style={{ margin: '0 0 20px', fontSize: '13px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, textAlign: 'center' }}>
-                Pour confirmer votre chantier, veuillez valider le versement de l'acompte de{' '}
+                Pour confirmer votre chantier, veuillez valider le versement de l&apos;acompte de{' '}
                 <strong style={{ color: '#FFFFFF' }}>{data.montant_acompte.toFixed(2)} €</strong>.
               </p>
               <button

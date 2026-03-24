@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 
 // ─── GET /api/clients ─────────────────────────────────────────────────────────
@@ -45,7 +45,7 @@ export async function GET() {
 // ─── PATCH /api/clients ───────────────────────────────────────────────────────
 // Réinitialise relance_envoyee = false pour tous les clients
 
-export async function PATCH(_req: NextRequest) {
+export async function PATCH() {
   const { error } = await supabaseAdmin
     .from('clients')
     .update({ relance_envoyee: false, date_relance: null })

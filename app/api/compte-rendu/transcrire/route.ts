@@ -5,7 +5,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
 export async function POST(req: NextRequest) {
   try {
-    const { audio, demande_id: _demande_id } = await req.json()
+    const { audio } = await req.json()
 
     if (!audio) {
       return NextResponse.json({ error: 'Audio manquant' }, { status: 400 })

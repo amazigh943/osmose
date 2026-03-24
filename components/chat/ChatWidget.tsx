@@ -75,9 +75,6 @@ export default function ChatWidget() {
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef  = useRef<HTMLInputElement>(null)
 
-  // Masquer sur les pages admin
-  if (pathname?.startsWith('/admin')) return null
-
   // Initialisation session + historique
   useEffect(() => {
     const id = getOrCreateSessionId()
@@ -95,6 +92,9 @@ export default function ChatWidget() {
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 100)
   }, [open])
+
+  // Masquer sur les pages admin (après tous les hooks)
+  if (pathname?.startsWith('/admin')) return null
 
   const handleSend = async () => {
     const text = input.trim()
