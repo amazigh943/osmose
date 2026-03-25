@@ -18,7 +18,7 @@ export async function sendMail({ to, subject, html, attachments }: {
   attachments?: any[]
 }) {
   return transporter.sendMail({
-    from: 'Osmose <no-reply@osmose-seven.vercel.app>',
+    from: 'Osmose <a5f8c6001@smtp-brevo.com>',
     to,
     subject,
     html,
