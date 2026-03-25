@@ -4,7 +4,7 @@ import autoTable from 'jspdf-autotable'
 import type { DevisData } from '@/types/devis'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -347,8 +347,7 @@ export async function POST(req: NextRequest) {
   if (client) {
     const isDev = process.env.NODE_ENV === 'development'
     const toEmail = isDev ? process.env.ADMIN_EMAIL! : client.email
-    await resend.emails.send({
-      from:    'Osmose <onboarding@resend.dev>',
+    await sendMail({
       to:      toEmail,
       subject: `Votre devis Osmose – ${devis.numero}`,
       html:    buildDevisEmail(client.prenom, client.nom, devis.numero, devis.total_ttc),

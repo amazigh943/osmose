@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 // ─── Templates email ──────────────────────────────────────────────────────────
 
@@ -137,8 +137,7 @@ export async function GET(req: NextRequest) {
   for (const client of clients ?? []) {
     const html = buildEmailClient(client.prenom, appUrl)
 
-    await resend.emails.send({
-      from: 'Osmose <onboarding@resend.dev>',
+    await sendMail({
       to: adminEmail ?? client.email, // en prod: client.email
       subject: 'On pense à vous — Un coup de frais pour votre intérieur ?',
       html,
@@ -155,8 +154,7 @@ export async function GET(req: NextRequest) {
 
   // Récap admin
   if (adminEmail && relances.length > 0) {
-    await resend.emails.send({
-      from: 'Osmose <onboarding@resend.dev>',
+    await sendMail({
       to: adminEmail,
       subject: `Relances anciens clients — ${relances.length} mail(s) envoyé(s)`,
       html: buildRecapAdmin(relances),

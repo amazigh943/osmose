@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 export async function POST(_req: NextRequest, { params }: { params: { id: string } }) {
   const supabase = await createSupabaseServerClient()
@@ -95,8 +95,7 @@ export async function POST(_req: NextRequest, { params }: { params: { id: string
     </html>
   `
 
-  await resend.emails.send({
-    from:        'Osmose <onboarding@resend.dev>',
+  await sendMail({
     to:          toEmail,
     subject:     `Facture Osmose – ${facture.numero}`,
     html,

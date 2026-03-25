@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 function buildAlerteEmail(
   produits: Array<{ nom: string; reference: string | null; quantite: number; seuil_alerte: number; unite: string }>
@@ -99,8 +99,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: true, alertes: 0 })
   }
 
-  await resend.emails.send({
-    from:    'Osmose <onboarding@resend.dev>',
+  await sendMail({
     to:      adminEmail,
     subject: 'Alerte stock Osmose — Produits à réapprovisionner',
     html:    buildAlerteEmail(produits),

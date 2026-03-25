@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 
@@ -243,8 +243,7 @@ export async function POST(req: NextRequest) {
     // 6. Email admin (non bloquant)
     const adminEmail = process.env.ADMIN_EMAIL
     if (adminEmail) {
-      resend.emails.send({
-        from: 'Osmose <onboarding@resend.dev>',
+      sendMail({
         to: adminEmail,
         subject: `Nouvelle demande de devis — ${data.prenom} ${data.nom}`,
         html: buildEmailHtml(data),

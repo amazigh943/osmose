@@ -1,5 +1,3 @@
-import { Resend } from 'resend'
-
-// Utilise un placeholder si la clé est absente pour éviter un crash au chargement du module.
-// L'envoi échouera silencieusement (attrapé par .catch() dans les routes) tant que la clé n'est pas configurée.
-export const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder')
+// Ce fichier est conservé pour éviter des erreurs d'import résiduels.
+// L'envoi d'emails est désormais géré par lib/mailer.ts (Brevo SMTP).
+export const resend = null

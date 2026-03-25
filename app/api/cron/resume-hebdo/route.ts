@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
@@ -219,8 +219,7 @@ export async function GET(req: NextRequest) {
 
   // Envoie le mail
   const html = buildResumeEmail(semaine, lundi)
-  await resend.emails.send({
-    from:    'Osmose <onboarding@resend.dev>',
+  await sendMail({
     to:      adminEmail,
     subject: `Résumé semaine du ${formatDateFR(lundi)}`,
     html,

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 // ─── Emails ───────────────────────────────────────────────────────────────────
 
@@ -214,8 +214,7 @@ export async function GET(req: NextRequest) {
       if (client?.email) {
         const isDev = process.env.NODE_ENV === 'development'
         const toEmail = isDev ? process.env.ADMIN_EMAIL! : client.email
-        await resend.emails.send({
-          from:    'Osmose <onboarding@resend.dev>',
+        await sendMail({
           to:      toEmail,
           subject: `Votre devis Osmose — Avez-vous eu le temps d'y réfléchir ?`,
           html:    buildRelanceClient(client.prenom, client.nom, numero, montantTTC),
@@ -240,8 +239,7 @@ export async function GET(req: NextRequest) {
 
   // Mail récap admin si des devis sont perdus
   if (perdus.length > 0 && adminEmail) {
-    await resend.emails.send({
-      from:    'Osmose <onboarding@resend.dev>',
+    await sendMail({
       to:      adminEmail,
       subject: 'Résumé hebdo — Devis sans suite',
       html:    buildRecapAdmin(perdus),

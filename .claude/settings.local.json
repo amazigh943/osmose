@@ -38,7 +38,8 @@
       "Bash(cmd /c \"wmic process where \\\\\"name='node.exe'\\\\\" get ProcessId,CommandLine 2>nul\")",
       "Bash(powershell -Command \"Get-Process node | Select-Object Id,CPU | Format-Table\")",
       "Bash(powershell -Command \"Stop-Process -Name node -Force\")",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

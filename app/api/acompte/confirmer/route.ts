@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 export async function POST(req: NextRequest) {
   const { token } = await req.json()
@@ -97,8 +97,7 @@ export async function POST(req: NextRequest) {
       </body>
       </html>
     `
-    await resend.emails.send({
-      from:    'Osmose <onboarding@resend.dev>',
+    await sendMail({
       to:      toClient,
       subject: 'Votre chantier Osmose est confirmé',
       html:    htmlClient,
@@ -149,8 +148,7 @@ export async function POST(req: NextRequest) {
     </body>
     </html>
   `
-  await resend.emails.send({
-    from:    'Osmose <onboarding@resend.dev>',
+  await sendMail({
     to:      adminEmail,
     subject: `Acompte confirmé — Chantier ${nomClient} validé`,
     html:    htmlAdmin,

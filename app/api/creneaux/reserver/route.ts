@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 const schema = z.object({
   demande_id: z.string().uuid(),
@@ -174,8 +174,7 @@ export async function POST(req: NextRequest) {
 
       const isDev = process.env.NODE_ENV === 'development'
       const toEmail = isDev ? process.env.ADMIN_EMAIL! : client.email
-      await resend.emails.send({
-        from: 'Osmose <onboarding@resend.dev>',
+      await sendMail({
         to: toEmail,
         subject: 'Votre RDV Osmose est confirmé',
         html: buildConfirmationEmail(client.prenom, client.nom, dateLong, heure),

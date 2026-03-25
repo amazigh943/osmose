@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import { resend } from '@/lib/resend'
+import { sendMail } from '@/lib/mailer'
 
 export async function PATCH(_req: NextRequest, { params }: { params: { id: string } }) {
   const supabase = await createSupabaseServerClient()
@@ -65,12 +65,11 @@ export async function PATCH(_req: NextRequest, { params }: { params: { id: strin
     </html>
   `
 
-  await resend.emails.send({
-    from:    'Osmose <onboarding@resend.dev>',
+  await sendMail({
     to:      toEmail,
     subject: `Règlement confirmé — Facture ${facture.numero} soldée`,
     html,
-  }).catch(err => console.error('[factures/solder] email error:', err))
+  }).catch((err: unknown) => console.error('[factures/solder] email error:', err))
 
   console.log('[factures/solder]', facture.numero, 'soldée')
   return NextResponse.json({ ok: true })
