@@ -1,10 +1,5 @@
 import Mailjet from 'node-mailjet'
 
-const mailjet = new Mailjet({
-  apiKey: process.env.MAILJET_API_KEY,
-  apiSecret: process.env.MAILJET_SECRET_KEY,
-})
-
 export async function sendMail({ to, subject, html, attachments }: {
   to: string
   subject: string
@@ -12,6 +7,11 @@ export async function sendMail({ to, subject, html, attachments }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   attachments?: any[]
 }) {
+  const mailjet = new Mailjet({
+    apiKey: process.env.MAILJET_API_KEY ?? '',
+    apiSecret: process.env.MAILJET_SECRET_KEY ?? '',
+  })
+
   const result = await mailjet.post('send', { version: 'v3.1' }).request({
     Messages: [
       {
@@ -29,6 +29,6 @@ export async function sendMail({ to, subject, html, attachments }: {
       },
     ],
   })
-  console.log('[mailer] Mail envoyé via Mailjet:', result.body)
+  console.log('[mailer] Mail envoyé:', result.body)
   return result
 }
